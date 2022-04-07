@@ -28,4 +28,31 @@ public class OrderItem {
 
     private int orderPirce; //주문가격
     private int count; //주문수량
+
+    //==생성 메서드==//
+    public static OrderItem createOrderItem(Item item, int orderPirce, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPirce(orderPirce);
+        orderItem.setCount(count);
+
+        item.removeStock(count);
+
+        return orderItem;
+    }
+
+    //==비즈니스로직==//
+    public void cancle() {
+        getItem().addStock(this.count);
+    }
+
+    //==조회로직==//
+
+    /**
+     *주문상품 전체 가격 조회
+     */
+
+    public int getTotalPrice() {
+        return getOrderPirce() * getCount();
+    }
 }
