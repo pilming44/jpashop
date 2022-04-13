@@ -29,14 +29,14 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    private int orderPirce; //주문가격
+    private int orderPrice; //주문가격
     private int count; //주문수량
 
     //==생성 메서드==//
-    public static OrderItem createOrderItem(Item item, int orderPirce, int count) {
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
-        orderItem.setOrderPirce(orderPirce);
+        orderItem.setOrderPrice(orderPrice);
         orderItem.setCount(count);
 
         item.removeStock(count);
@@ -56,6 +56,6 @@ public class OrderItem {
      */
 
     public int getTotalPrice() {
-        return getOrderPirce() * getCount();
+        return getOrderPrice() * getCount();
     }
 }
